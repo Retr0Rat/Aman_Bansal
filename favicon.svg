@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <text
+    x="32"
+    y="48"
+    text-anchor="middle"
+    font-family="Palatino Linotype, Palatino, Book Antiqua, Georgia, serif"
+    font-weight="700"
+    font-style="italic"
+    font-size="36"
+    letter-spacing="-1"
+    fill="url(#grad)"
+  >Ab</text>
+</svg>
