@@ -222,15 +222,22 @@ Error generating stack: `+e.message+`
           .proj-nav-bar     { padding: 5px 12px 7px; }
           .proj-nav-label   { display: none; }
         }
+        @media (max-width: 767px) {
+          /* lift nav bar above browser chrome using safe-area inset */
+          .proj-nav-bar {
+            padding: 8px 12px calc(10px + env(safe-area-inset-bottom, 16px));
+          }
+        }
 
         @media (max-width: 767px) {
-          /* wrapper fills full viewport, nav bar pushed to bottom */
+          /* wrapper fills full dvh, nav bar pushed to bottom with safe-area room */
           .projects-wrapper {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            height: 100%;
-            min-height: 100vh;
+            height: 100dvh;
+            min-height: 100dvh;
+            padding-bottom: max(16px, env(safe-area-inset-bottom, 16px));
           }
           /* pane-inner shrinks to content — kills the 227px dead zone */
           .proj-pane-inner {
