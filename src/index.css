@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@import "./styles/theme.css";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* ── Dynamic viewport height — fixes content hiding behind browser chrome on mobile ── */
+@media (max-width: 767px) {
+  html, body, #root {
+    height: 100dvh;      /* dvh shrinks with collapsible browser UI; vh does not */
+  }
+  .page-layer {
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+}
+
+/* Hide scrollbar on about timeline panel */
+.about-scroll-panel::-webkit-scrollbar { display: none; }
+.about-scroll-panel { -ms-overflow-style: none; scrollbar-width: none; }

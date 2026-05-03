@@ -1,0 +1,39 @@
+/* ── LIGHT (default) ── */
+:root {
+  --bg-primary:    #ffffff;
+  --bg-secondary:  #f5f5f5;
+  --bg-card:       rgba(255,255,255,0.8);
+  --text-primary:  #0a0a0a;
+  --text-secondary:#4a4a4a;
+  --text-muted:    #888888;
+  --accent:        #a855f7;
+  --accent-dark:   #7c3aed;
+  --border:        rgba(168,85,247,0.2);
+  --grid-line:     rgba(168,85,247,0.06);
+  --shadow:        0 8px 32px rgba(0,0,0,0.08);
+}
+
+/* ── DARK ── */
+[data-theme="dark"] {
+  --bg-primary:    #0a0a0a;
+  --bg-secondary:  #141414;
+  --bg-card:       rgba(20,20,20,0.6);
+  --text-primary:  #ffffff;
+  --text-secondary:#b8b8b8;
+  --text-muted:    #808080;
+  --accent:        #a855f7;
+  --accent-dark:   #7c3aed;
+  --border:        rgba(168,85,247,0.15);
+  --grid-line:     rgba(168,85,247,0.04);
+  --shadow:        0 8px 32px rgba(0,0,0,0.4);
+}
+
+/* ── GLOBAL ── */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Syne', sans-serif;
+  /* No transition here — the ripple overlay handles the visual switch.
+     A CSS transition on body causes a second independent fade that fights
+     the ripple and creates a flicker. */
+}

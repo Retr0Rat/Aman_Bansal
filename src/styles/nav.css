@@ -1,0 +1,43 @@
+/* ── load-in stagger ── */
+.s-marker {
+  opacity: 0;
+  animation: markerIn 0.5s ease forwards;
+}
+.s-marker:nth-child(2) { animation-delay: 0.08s; }
+.s-marker:nth-child(3) { animation-delay: 0.16s; }
+.s-marker:nth-child(4) { animation-delay: 0.24s; }
+.s-marker:nth-child(5) { animation-delay: 0.32s; }
+.s-marker:nth-child(6) { animation-delay: 0.40s; }
+.s-marker:nth-child(7) { animation-delay: 0.48s; }
+@keyframes markerIn {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── ripple rings ── */
+.s-marker.active .ripple {
+  animation: rippleOut 1.8s ease-out infinite;
+}
+.s-marker.active .ripple:nth-child(2) { animation-delay: 0.6s; }
+.s-marker.active .ripple:nth-child(3) { animation-delay: 1.2s; }
+@keyframes rippleOut {
+  0%   { transform: scale(0.5); opacity: 0.8; border-color: rgba(168,85,247,0.6); }
+  100% { transform: scale(2.2); opacity: 0;   border-color: rgba(168,85,247,0); }
+}
+
+/* ── click burst ── */
+.s-marker.burst-anim .burst {
+  animation: burstAnim 0.5s ease-out forwards;
+}
+@keyframes burstAnim {
+  0%   { transform: scale(0.5); opacity: 1; }
+  100% { transform: scale(2);   opacity: 0; }
+}
+
+/* ── Responsive nav visibility ── */
+.nav-desktop { display: none; }
+.nav-mobile  { display: none; }   /* removed — mobile navigation is swipe-only */
+
+@media (min-width: 1024px) {
+  .nav-desktop { display: flex; }
+}

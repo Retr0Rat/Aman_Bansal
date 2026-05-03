@@ -1,0 +1,91 @@
+/* ── Cylinder roll wrapper ── */
+.cyl-text {
+  display: inline-flex;
+  align-items: flex-start;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+
+.cyl-wrap {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  vertical-align: top;
+  height: 1.25em;
+}
+
+.cyl-orig,
+.cyl-clone {
+  display: block;
+  line-height: 1.25;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: pre;
+}
+
+.cyl-clone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.cyl-space {
+  display: inline-block;
+  width: 0.3em;
+  flex-shrink: 0;
+}
+
+/* ── Pure CSS cylinder roll on hover ── */
+/* Even chars (data-odd="1") roll UP: orig goes -110%, clone comes from +110% */
+/* Odd chars (data-odd="0") roll DOWN: orig goes +110%, clone comes from -110% */
+
+/* Initial clone positions */
+.cyl-wrap[data-odd="1"] .cyl-clone { transform: translateY(110%); }
+.cyl-wrap[data-odd="0"] .cyl-clone { transform: translateY(-110%); }
+
+/* On parent hover — orig exits, clone enters */
+.cyl-text:hover .cyl-wrap[data-odd="1"] .cyl-orig  { transform: translateY(-110%); }
+.cyl-text:hover .cyl-wrap[data-odd="1"] .cyl-clone  { transform: translateY(0); }
+.cyl-text:hover .cyl-wrap[data-odd="0"] .cyl-orig  { transform: translateY(110%); }
+.cyl-text:hover .cyl-wrap[data-odd="0"] .cyl-clone  { transform: translateY(0); }
+
+/* Staggered transition-delay per character for wave feel */
+.cyl-wrap:nth-child(1)  .cyl-orig, .cyl-wrap:nth-child(1)  .cyl-clone { transition-delay: 0ms; }
+.cyl-wrap:nth-child(2)  .cyl-orig, .cyl-wrap:nth-child(2)  .cyl-clone { transition-delay: 30ms; }
+.cyl-wrap:nth-child(3)  .cyl-orig, .cyl-wrap:nth-child(3)  .cyl-clone { transition-delay: 60ms; }
+.cyl-wrap:nth-child(4)  .cyl-orig, .cyl-wrap:nth-child(4)  .cyl-clone { transition-delay: 90ms; }
+.cyl-wrap:nth-child(5)  .cyl-orig, .cyl-wrap:nth-child(5)  .cyl-clone { transition-delay: 120ms; }
+.cyl-wrap:nth-child(6)  .cyl-orig, .cyl-wrap:nth-child(6)  .cyl-clone { transition-delay: 150ms; }
+.cyl-wrap:nth-child(7)  .cyl-orig, .cyl-wrap:nth-child(7)  .cyl-clone { transition-delay: 180ms; }
+.cyl-wrap:nth-child(8)  .cyl-orig, .cyl-wrap:nth-child(8)  .cyl-clone { transition-delay: 210ms; }
+.cyl-wrap:nth-child(9)  .cyl-orig, .cyl-wrap:nth-child(9)  .cyl-clone { transition-delay: 240ms; }
+.cyl-wrap:nth-child(10) .cyl-orig, .cyl-wrap:nth-child(10) .cyl-clone { transition-delay: 270ms; }
+.cyl-wrap:nth-child(11) .cyl-orig, .cyl-wrap:nth-child(11) .cyl-clone { transition-delay: 300ms; }
+.cyl-wrap:nth-child(12) .cyl-orig, .cyl-wrap:nth-child(12) .cyl-clone { transition-delay: 330ms; }
+.cyl-wrap:nth-child(13) .cyl-orig, .cyl-wrap:nth-child(13) .cyl-clone { transition-delay: 360ms; }
+.cyl-wrap:nth-child(14) .cyl-orig, .cyl-wrap:nth-child(14) .cyl-clone { transition-delay: 390ms; }
+.cyl-wrap:nth-child(15) .cyl-orig, .cyl-wrap:nth-child(15) .cyl-clone { transition-delay: 420ms; }
+.cyl-wrap:nth-child(16) .cyl-orig, .cyl-wrap:nth-child(16) .cyl-clone { transition-delay: 450ms; }
+.cyl-wrap:nth-child(17) .cyl-orig, .cyl-wrap:nth-child(17) .cyl-clone { transition-delay: 480ms; }
+.cyl-wrap:nth-child(18) .cyl-orig, .cyl-wrap:nth-child(18) .cyl-clone { transition-delay: 510ms; }
+.cyl-wrap:nth-child(19) .cyl-orig, .cyl-wrap:nth-child(19) .cyl-clone { transition-delay: 540ms; }
+.cyl-wrap:nth-child(20) .cyl-orig, .cyl-wrap:nth-child(20) .cyl-clone { transition-delay: 570ms; }
+
+/* ── Name gradient (Aman Bansal) ── */
+.name-char {
+  background: linear-gradient(135deg, #fff 0%, #a855f7 55%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+[data-theme="light"] .name-char {
+  background: linear-gradient(135deg, #0a0a0a 0%, #a855f7 55%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
