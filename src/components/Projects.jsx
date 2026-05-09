@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import CylinderText from './CylinderText'
 
 /* ─── Project data ─── */
@@ -8,27 +9,65 @@ const PROJECTS = [
     type: 'Machine Learning · Capstone',
     name: 'Social Media Integrity Platform',
     shortName: 'ML Integrity',
-    desc: 'ML platform detecting bot accounts and fake news using calibrated Random Forest (TwiBot-20, 700K+ samples) and DistilBERT achieving 91% accuracy. FastAPI backend with React admin dashboard.',
+    desc: 'ML platform detecting bot accounts and fake news using calibrated Random Forest (TwiBot-20, 700K+ samples, 88% accuracy) and DistilBERT fake news classifier at 91% accuracy. FastAPI backend with React admin dashboard, served via Docker.',
     tech: ['Python', 'FastAPI', 'React', 'DistilBERT', 'scikit-learn', 'Docker', 'MongoDB'],
     live: false,
     stats: [
-      { num: '91%',   lbl: 'Accuracy' },
-      { num: '700K+', lbl: 'Samples'  },
-      { num: '2026',  lbl: 'Shipped'  },
-      { num: 'ML',    lbl: 'Powered'  },
+      { num: '91%',   lbl: 'Accuracy'  },
+      { num: '700K+', lbl: 'Samples'   },
+      { num: '2026',  lbl: 'Shipped'   },
+      { num: 'ML',    lbl: 'Powered'   },
     ],
-    info: { label: '🤖 Model', val: 'DistilBERT + Random Forest', sub: 'Calibrated on TwiBot-20 dataset' },
+    info: { label: '🤖 Models', val: 'DistilBERT + Random Forest', sub: 'Calibrated on TwiBot-20 dataset' },
     btnLabel: '↗ GitHub',
     btnHref: 'https://github.com/Retr0Rat',
     image: 'https://placehold.co/800x450/1a0533/a855f7?text=ML+Integrity',
   },
   {
     num: '02',
+    type: 'AI · RAG · Full Stack',
+    name: 'DC AI Program Q&A Tool',
+    shortName: 'AI Q&A Tool',
+    desc: 'Claude-powered Q&A tool with a keyword-based RAG pipeline over 12 course documents stored in GCP Cloud Storage. GitHub Actions CI/CD pipeline deploys a Next.js frontend on Vercel, with the Claude API handling retrieval-augmented responses.',
+    tech: ['Claude API', 'Next.js', 'GCP', 'GitHub Actions', 'Python', 'Vercel'],
+    live: true,
+    stats: [
+      { num: 'RAG',    lbl: 'Pipeline'  },
+      { num: '12',     lbl: 'Documents' },
+      { num: '2026',   lbl: 'Shipped'   },
+      { num: 'CI/CD',  lbl: 'Deployed'  },
+    ],
+    info: { label: '🧠 AI Layer', val: 'Claude API (claude-opus-4-6)', sub: 'Keyword-based RAG over GCP Cloud Storage' },
+    btnLabel: '↗ GitHub',
+    btnHref: 'https://github.com/Retr0Rat/AI-QA-Tools',
+    image: 'https://placehold.co/800x450/1a0533/a855f7?text=AI+Q%26A+Tool',
+  },
+  {
+    num: '03',
+    type: 'Machine Learning · FastAPI',
+    name: 'Fraud Detection API',
+    shortName: 'Fraud API',
+    desc: 'Fraud detection REST API achieving 95.62% F1-score using XGBoost with a full preprocessing pipeline, FastAPI serving layer, and Dockerised deployment for production readiness.',
+    tech: ['Python', 'XGBoost', 'FastAPI', 'scikit-learn', 'Docker', 'pandas'],
+    live: false,
+    stats: [
+      { num: '95.62%', lbl: 'F1-Score'  },
+      { num: 'XGBoost', lbl: 'Model'    },
+      { num: '2025',   lbl: 'Shipped'   },
+      { num: 'REST',   lbl: 'API'       },
+    ],
+    info: { label: '🐳 Deployment', val: 'Docker container', sub: 'FastAPI serving with preprocessing pipeline' },
+    btnLabel: '↗ GitHub',
+    btnHref: 'https://github.com/Retr0Rat',
+    image: 'https://placehold.co/800x450/1a0533/a855f7?text=Fraud+API',
+  },
+  {
+    num: '04',
     type: 'Full Stack · React',
     name: 'Expense Splitter App',
     shortName: 'Expense Splitter',
     desc: 'Group expense splitting app with real-time balance tracking and settlement suggestions. Built with full TDD — 25 passing Vitest tests — and automated CI/CD via GitHub Actions.',
-    tech: ['React', 'Node.js', 'Vitest', 'GitHub Actions', 'Vite'],
+    tech: ['React', 'Vite', 'Tailwind CSS', 'Vitest', 'GitHub Actions'],
     live: false,
     stats: [
       { num: '25',    lbl: 'Tests'    },
@@ -42,27 +81,27 @@ const PROJECTS = [
     image: 'https://placehold.co/800x450/1a0533/a855f7?text=Expense+Splitter',
   },
   {
-    num: '03',
-    type: 'Machine Learning · FastAPI',
-    name: 'ML Classification API',
-    shortName: 'ML API',
-    desc: 'Species classification REST API achieving 95.62% F1-score using XGBoost with FastAPI serving, preprocessing pipeline, and Dockerised deployment for production readiness.',
-    tech: ['Python', 'XGBoost', 'FastAPI', 'scikit-learn', 'Docker', 'pandas'],
+    num: '05',
+    type: 'Data · Tableau',
+    name: 'NovaRetail Dashboard',
+    shortName: 'NovaRetail',
+    desc: 'Three Tableau dashboards — Executive Overview, Customer & Churn Analysis, and Product & Regional Performance — built on a 2,172-row transaction dataset. Identified a 33% data quality issue and resolved it with calculated fields before surfacing a 26% revenue decline and 50% churn risk growth.',
+    tech: ['Tableau', 'Excel', 'Data Cleaning', 'Calculated Fields'],
     live: false,
     stats: [
-      { num: '95.62%', lbl: 'F1-Score' },
-      { num: 'XGBoost', lbl: 'Model'   },
-      { num: '2025',   lbl: 'Shipped'  },
-      { num: 'REST',   lbl: 'API'      },
+      { num: '3',      lbl: 'Dashboards' },
+      { num: '2,172',  lbl: 'Rows'       },
+      { num: '26%',    lbl: 'Rev Drop'   },
+      { num: '2026',   lbl: 'Shipped'    },
     ],
-    info: { label: '🐳 Deployment', val: 'Docker container', sub: 'FastAPI serving with preprocessing pipeline' },
+    info: { label: '📊 Tool', val: 'Tableau Desktop', sub: 'Executive, Churn & Regional views' },
     btnLabel: '↗ GitHub',
     btnHref: 'https://github.com/Retr0Rat',
-    image: 'https://placehold.co/800x450/1a0533/a855f7?text=ML+API',
+    image: 'https://placehold.co/800x450/1a0533/a855f7?text=NovaRetail',
   },
   {
-    num: '04',
-    type: 'Full Stack · React + Node',
+    num: '06',
+    type: 'Full Stack · MERN',
     name: 'Mon Amour — E-Commerce',
     shortName: 'Mon Amour',
     desc: 'Full-stack fashion e-commerce platform with JWT auth, MongoDB, product reviews, wishlist, size modal, admin dashboard, and a complete mock checkout flow.',
@@ -112,34 +151,82 @@ function Tag({ label }) {
 ════════════════════════════════════════════════ */
 function Drawer({ p, open, onClose, isDark }) {
   const bg = isDark ? '#0d0118' : '#ffffff'
-  return (
-    <>
-      {/* Backdrop */}
-      <div
-        onClick={onClose}
-        style={{
-          position: 'fixed', inset: 0,
-          background: 'rgba(0,0,0,0.65)',
-          backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)',
-          zIndex: 50,
-          opacity: open ? 1 : 0,
-          pointerEvents: open ? 'auto' : 'none',
-          transition: 'opacity 250ms ease',
-        }}
-      />
 
-      {/* Panel */}
-      <div
-        className={`proj-drawer${open ? ' proj-drawer--open' : ''}`}
-        style={{ background: bg, border: '1px solid rgba(168,85,247,0.2)', boxShadow: '0 -8px 60px rgba(0,0,0,0.6)' }}
-      >
-        {/* Drag handle (mobile/tablet only) */}
-        <div className="proj-drawer-handle">
-          <div style={{ width: 40, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.15)', margin: '12px auto' }} />
-        </div>
+  /* Track desktop vs mobile in JS so we can drive styles inline —
+     avoids any CSS inset / media-query cascade issues with the portal */
+  const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 1024)
+  useEffect(() => {
+    function onResize() { setIsDesktop(window.innerWidth >= 1024) }
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [])
+
+  useEffect(() => {
+    const slides = document.querySelectorAll('.proj-slide')
+    slides.forEach(el => { el.style.overflowY = open ? 'hidden' : '' })
+    return () => { slides.forEach(el => { el.style.overflowY = '' }) }
+  }, [open])
+
+  /* ── Overlay: full-viewport fixed layer, flex-centres the panel ── */
+  const overlayStyle = {
+    position:           'fixed',
+    top:                0,
+    left:               0,
+    width:              '100%',
+    height:             '100%',
+    zIndex:             50,
+    background:         'rgba(0,0,0,0.65)',
+    backdropFilter:     'blur(6px)',
+    WebkitBackdropFilter: 'blur(6px)',
+    opacity:            open ? 1 : 0,
+    pointerEvents:      open ? 'auto' : 'none',
+    transition:         'opacity 250ms ease',
+    display:            'flex',
+    alignItems:         isDesktop ? 'center' : 'flex-end',
+    justifyContent:     'center',
+  }
+
+  /* ── Panel: mobile bottom-sheet or desktop centred modal ── */
+  const panelTransform = isDesktop
+    ? (open ? 'scale(1)'       : 'scale(0.95)')
+    : (open ? 'translateY(0)'  : 'translateY(100%)')
+
+  const panelTransition = open
+    ? 'transform 420ms cubic-bezier(0.32,0.72,0,1), opacity 250ms ease'
+    : 'transform 300ms ease-in, opacity 250ms ease-in'
+
+  const panelStyle = {
+    background:    bg,
+    border:        '1px solid rgba(168,85,247,0.2)',
+    boxShadow:     isDesktop ? '0 25px 60px rgba(0,0,0,0.6)' : '0 -8px 60px rgba(0,0,0,0.6)',
+    width:         isDesktop ? '680px' : '100%',
+    maxWidth:      isDesktop ? '90vw'  : undefined,
+    height:        isDesktop ? '85vh'  : '88vh',
+    borderRadius:  isDesktop ? '20px'  : '20px 20px 0 0',
+    display:       'flex',
+    flexDirection: 'column',
+    flexShrink:    0,
+    overflow:      'hidden',          // clips content to border-radius
+    zIndex:        60,
+    transform:     panelTransform,
+    opacity:       isDesktop ? (open ? 1 : 0) : 1,
+    transition:    panelTransition,
+  }
+
+  return createPortal(
+    <div style={overlayStyle} onClick={onClose}>
+      {/* proj-drawer--open class is a DOM signal used by App.jsx wheel/touch handlers */}
+      <div style={panelStyle} className={open ? 'proj-drawer--open' : ''} onClick={e => e.stopPropagation()}>
+
+        {/* Drag handle (mobile / tablet only) */}
+        {!isDesktop && (
+          <div style={{ flexShrink: 0 }}>
+            <div style={{ width: 40, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.15)', margin: '12px auto' }} />
+          </div>
+        )}
 
         {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', padding: '0 20px 12px', flexShrink: 0 }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', padding: '12px 20px', flexShrink: 0 }}>
           <h2 style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 17, color: 'var(--text-primary)', margin: 0, lineHeight: 1.3, paddingRight: 12 }}>
             {p.name}
           </h2>
@@ -204,8 +291,10 @@ function Drawer({ p, open, onClose, isDark }) {
             {p.btnLabel}
           </a>
         </div>
+
       </div>
-    </>
+    </div>,
+    document.body
   )
 }
 
@@ -229,9 +318,9 @@ export default function Projects({ theme }) {
   }
 
   return (
+    <>
+    <Drawer p={p} open={drawerOpen} onClose={() => setDrawerOpen(false)} isDark={isDark} />
     <div className="projects-wrapper">
-
-      <Drawer p={p} open={drawerOpen} onClose={() => setDrawerOpen(false)} isDark={isDark} />
 
       {/* ── Carousel slides ── */}
       <div className="proj-slides-area">
@@ -303,7 +392,7 @@ export default function Projects({ theme }) {
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 24 }}>
                     {proj.tech.map(t => <Tag key={t} label={t} />)}
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <div style={{ display: 'flex', flexDirection: 'row', gap: 24, alignItems: 'center' }}>
                     <CylinderText
                       href={proj.btnHref}
                       target="_blank"
@@ -315,7 +404,7 @@ export default function Projects({ theme }) {
                     <CylinderText
                       as="button"
                       onClick={() => { setActive(i); setDrawerOpen(true) }}
-                      style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 14, color: '#a855f7', letterSpacing: '0.04em' }}
+                      style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 14, color: '#ffffff', letterSpacing: '0.04em' }}
                     >
                       More Info →
                     </CylinderText>
@@ -626,40 +715,23 @@ export default function Projects({ theme }) {
         }
 
         /* ═══════════════════════════════
-           DETAIL DRAWER
+           DETAIL DRAWER — helper classes only
+           (overlay + panel positioning/animation is fully inline)
         ═══════════════════════════════ */
-
-        /* Mobile + tablet — bottom sheet */
-        .proj-drawer {
-          position: fixed;
-          bottom: 0; left: 0; right: 0;
-          height: 88vh;
-          border-radius: 20px 20px 0 0;
-          z-index: 60;
-          display: flex;
-          flex-direction: column;
-          transform: translateY(100%);
-          transition: transform 250ms ease-in;
-          pointer-events: none;
-        }
-        .proj-drawer--open {
-          transform: translateY(0);
-          transition: transform 380ms cubic-bezier(0.32,0.72,0,1);
-          pointer-events: auto;
-        }
-
-        /* Drag handle */
-        .proj-drawer-handle { flex-shrink: 0; }
-        @media (min-width: 1024px) { .proj-drawer-handle { display: none; } }
 
         /* Scrollable body */
         .proj-drawer-body {
           flex: 1;
+          min-height: 0;
           overflow-y: auto;
+          overscroll-behavior: contain;
           padding: 20px 20px calc(28px + env(safe-area-inset-bottom, 0px));
           -webkit-overflow-scrolling: touch;
           touch-action: pan-y;
           box-sizing: border-box;
+        }
+        @media (min-width: 1024px) {
+          .proj-drawer-body { padding: 24px 28px 28px; }
         }
 
         /* GitHub button inside drawer */
@@ -678,30 +750,8 @@ export default function Projects({ theme }) {
           background: rgba(168,85,247,0.1);
           border-color: #a855f7;
         }
-
-        /* Desktop — centred modal */
-        @media (min-width: 1024px) {
-          .proj-drawer {
-            top: 50%; left: 50%;
-            bottom: auto; right: auto;
-            height: auto;
-            max-height: 85vh;
-            width: min(680px, 90vw);
-            border-radius: 20px;
-            transform: translate(-50%, -50%) scale(0.95);
-            opacity: 0;
-            transition: transform 250ms ease-in, opacity 250ms ease-in;
-          }
-          .proj-drawer--open {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-            transition: transform 380ms cubic-bezier(0.32,0.72,0,1), opacity 250ms ease;
-          }
-          .proj-drawer-body {
-            padding: 24px 28px 28px;
-          }
-        }
       `}</style>
     </div>
+    </>
   )
 }

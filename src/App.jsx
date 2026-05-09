@@ -142,8 +142,13 @@ export default function App() {
 
     function onWheel(e) {
       if (showResumeRef.current) return
-      /* No width guard — wheel events only fire from real mice/trackpads,
-         never from touch, so this safely works at any viewport size */
+
+      /* If a drawer/modal is open, let wheel events pass through to it,
+         but block them from the backdrop (prevent background page scroll) */
+      if (document.querySelector('.proj-drawer--open')) {
+        if (!e.target.closest('.proj-drawer-body')) e.preventDefault()
+        return  // never trigger page transitions while drawer is open
+      }
 
       /* Always prevent default — stops inner overflow containers scrolling */
       e.preventDefault()
@@ -269,6 +274,7 @@ export default function App() {
     if (showResumeRef.current) return
     if (window.innerWidth >= 1024) return
     if (isTransitioning.current) return
+    if (document.querySelector('.proj-drawer--open')) return  // drawer open — block page swipes
     const touch = e.touches[0]
     touchRef.current = {
       startY:    touch.clientY,
