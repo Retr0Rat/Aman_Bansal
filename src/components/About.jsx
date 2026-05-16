@@ -33,7 +33,7 @@ const EXPERIENCE = [
 
 const STATS = [
   { value: '2',  label: 'Diploma Certs' },
-  { value: '3',  label: 'Certifications' },
+  { value: '2+', label: 'Years Experience' },
   { value: '10+', label: 'Projects' },
 ]
 

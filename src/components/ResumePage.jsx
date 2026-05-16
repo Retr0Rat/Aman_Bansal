@@ -56,12 +56,12 @@ const EDUCATION = [
 ]
 
 const SKILLS = {
-  'Programming':     ['Python', 'JavaScript', 'NodeJS', 'C/C++', 'Bash', 'PowerShell', 'SQL'],
-  'Web Development': ['React.js', 'Node/Express.js', 'FastAPI', 'REST APIs', 'MongoDB', 'HTML5', 'CSS3', 'Bootstrap'],
-  'AI / ML':         ['Prompt Engineering', 'RAG Pipeline', 'XGBoost', 'scikit-learn', 'TensorFlow', 'DistilBERT', 'Transformers', 'NLP', 'Pandas', 'NumPy', 'Tableau'],
-  'Security Tools':  ['Nessus', 'OpenVAS', 'Metasploit', 'Burp Suite', 'SQLMap', 'Nmap', 'Wireshark', 'Snort', 'Splunk', 'Kali Linux'],
-  'Security Concepts': ['Vulnerability Assessment', 'Threat Detection', 'OWASP Top 10', 'Encryption/PKI', 'Incident Response', 'Malware Analysis'],
-  'DevOps / Cloud':  ['Git', 'GitHub', 'Docker', 'GCP', 'AWS (EC2, S3, VPC)', 'Vercel', 'VirtualBox/VMware'],
+  'Programming':       ['Python', 'JavaScript', 'NodeJS', 'C/C++', 'Bash', 'PowerShell', 'SQL'],
+  'Web Development':   ['React.js', 'Node/Express.js', 'FastAPI', 'REST APIs', 'MongoDB', 'HTML5', 'CSS3', 'Bootstrap'],
+  'AI / ML':           ['Prompt Engineering', 'RAG Pipeline', 'XGBoost', 'scikit-learn', 'TensorFlow', 'DistilBERT', 'Transformers', 'NLP', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'SMOTE', 'Anomaly Detection', 'Hypothesis Testing', 'Linear Regression', 'Statistical Analysis', 'Tableau'],
+  'Security Tools':    ['Nessus', 'OpenVAS', 'Metasploit', 'Burp Suite', 'SQLMap', 'Nmap', 'Wireshark', 'Snort (IDS/IPS)', 'Splunk (SIEM)', 'pfSense', 'Kali Linux', 'Ubuntu', 'Windows Server'],
+  'Security Concepts': ['Vulnerability Assessment', 'Threat Detection', 'Network Traffic Analysis', 'OWASP Top 10', 'Authentication/Access Control', 'Encryption/PKI', 'Risk Assessment', 'Incident Response', 'Malware Analysis'],
+  'DevOps / Cloud':    ['Git', 'GitHub', 'Docker', 'CI/CD (GitHub Actions)', 'GCP', 'AWS (EC2, S3, VPC)', 'Vercel', 'VirtualBox/VMware', 'Virtual Lab Environments'],
 }
 
 const PROJECTS = [
@@ -71,49 +71,37 @@ const PROJECTS = [
     points: ['AI/ML Specialist in team developing misinformation detection platform with dual-approach fake news detection using TF-IDF, Logistic Regression, and DistilBERT transformer models, along with Random Forest bot detector, deployed via FastAPI.'],
   },
   {
-    name: 'Credit Card Fraud Detection API',
-    stack: 'XGBoost · FastAPI · Python',
-    points: ['Built XGBoost classifier deployed as a production-ready REST API with FastAPI and Pydantic validation; performed exploratory data analysis and overfitting analysis.'],
+    name: 'Prompt Injection & LLM Security Scanner',
+    stack: 'DistilBERT · FastAPI · Python · Docker',
+    points: ['Fine-tuned DistilBERT to detect prompt injection attacks in LLM applications, achieving 95% accuracy and F1-score of 0.95, deployed via FastAPI and Docker with 10/10 pytest coverage.'],
   },
   {
-    name: 'Program/Course Q&A RAG Tool',
-    stack: 'Python · RAG · Claude API · GitHub Actions · GCP · Vercel',
-    points: ['Built a retrieval-augmented generation Q&A tool for the Durham College AI program, implementing a GitHub Actions ETL pipeline with GCP bronze/silver/gold storage architecture and a Vercel-deployed frontend powered by the Claude API.'],
+    name: 'SIEM Network Anomaly Detector',
+    stack: 'Isolation Forest · FastAPI · Python · Docker',
+    points: ['Built unsupervised anomaly detection system using Isolation Forest on CICIDS 2017 dataset, detecting DDoS attacks without labelled attack data, achieving Macro F1 of 0.71, deployed via FastAPI and Docker.'],
   },
   {
-    name: 'Canadian Immigration Data Visualization',
+    name: 'Canadian Immigration Data Visualization & Analysis',
     stack: 'Tableau · Python',
     points: ['Analyzed multi-year Canadian immigration dataset, created interactive Tableau dashboard with various visualizations, and developed presentation demonstrating data storytelling with data cleaning and feature engineering.'],
   },
   {
     name: 'Website Security Using Nessus & Snort — Capstone',
     stack: 'Nessus · Snort · Splunk',
-    points: ['Designed secure virtual network environment, conducted vulnerability scans with Nessus to identify critical CVEs, implemented Snort IDS/IPS rules, simulated real-world attacks, and captured security events using Splunk SIEM.'],
+    points: ['Designed secure virtual network environment, conducted vulnerability scans with Nessus to identify critical CVEs, implemented Snort IDS/IPS rules, simulated real-world attacks, and captured security events using Splunk SIEM with documented remediation steps.'],
   },
   {
-    name: 'Penetration Testing Lab Projects',
+    name: 'Penetration Testing Labs',
     stack: 'Metasploit · Burp Suite · Nmap',
-    points: ['Performed reconnaissance and network scanning, exploited vulnerable services with Metasploit, tested web applications for SQL injection, XSS, and authentication flaws using Burp Suite, and produced professional penetration testing reports.'],
+    points: ['Performed reconnaissance and network scanning, exploited vulnerable services with Metasploit Framework, tested web applications for SQL injection, XSS, and authentication flaws using Burp Suite, and produced professional penetration testing reports.'],
   },
 ]
 
 const CERTS = [
   {
-    name: 'Front-End Development',
-    issuer: 'Coursera',
-    period: 'Jun 2023 – Aug 2023',
-    skills: 'HTML/CSS/JavaScript, Bootstrap, React, GitHub version control',
-  },
-  {
     name: 'Foundation of Cybersecurity',
     issuer: 'Coursera',
-    period: 'Sep 2023 – Nov 2023',
-    skills: 'Network defense, intrusion tactics, system hardening, packet analysis',
-  },
-  {
-    name: 'Network Security',
-    issuer: 'Coursera',
-    period: 'Dec 2023 – Feb 2024',
+    period: '2023',
     skills: 'Network defense, intrusion tactics, system hardening, packet analysis',
   },
 ]

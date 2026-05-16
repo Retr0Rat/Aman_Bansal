@@ -19,47 +19,50 @@ const PROJECTS = [
       { num: 'ML',    lbl: 'Powered'   },
     ],
     info: { label: '🤖 Models', val: 'DistilBERT + Random Forest', sub: 'Calibrated on TwiBot-20 dataset' },
+    btn2: null,
     btnLabel: '↗ GitHub',
     btnHref: 'https://github.com/Retr0Rat',
     image: 'https://placehold.co/800x450/1a0533/a855f7?text=ML+Integrity',
   },
   {
     num: '02',
-    type: 'AI · RAG · Full Stack',
-    name: 'DC AI Program Q&A Tool',
-    shortName: 'AI Q&A Tool',
-    desc: 'Claude-powered Q&A tool with a keyword-based RAG pipeline over 12 course documents stored in GCP Cloud Storage. GitHub Actions CI/CD pipeline deploys a Next.js frontend on Vercel, with the Claude API handling retrieval-augmented responses.',
-    tech: ['Claude API', 'Next.js', 'GCP', 'GitHub Actions', 'Python', 'Vercel'],
-    live: true,
+    type: 'Security AI · NLP · MLOps',
+    name: 'Prompt Injection & LLM Security Scanner',
+    shortName: 'LLM Scanner',
+    desc: 'Fine-tuned DistilBERT to detect prompt injection attacks in LLM applications, achieving 95% accuracy and F1-score of 0.95. Deployed as a production REST API via FastAPI and Docker with a full pytest suite at 10/10 coverage.',
+    tech: ['DistilBERT', 'Python', 'FastAPI', 'Docker', 'pytest', 'scikit-learn'],
+    live: false,
     stats: [
-      { num: 'RAG',    lbl: 'Pipeline'  },
-      { num: '12',     lbl: 'Documents' },
-      { num: '2026',   lbl: 'Shipped'   },
-      { num: 'CI/CD',  lbl: 'Deployed'  },
+      { num: '95%',   lbl: 'Accuracy' },
+      { num: '0.95',  lbl: 'F1-Score' },
+      { num: '10/10', lbl: 'Coverage' },
+      { num: '2026',  lbl: 'Shipped'  },
     ],
-    info: { label: '🧠 AI Layer', val: 'Claude API (claude-opus-4-6)', sub: 'Keyword-based RAG over GCP Cloud Storage' },
+    info: { label: '🔐 Model', val: 'Fine-tuned DistilBERT', sub: 'Prompt injection detection for LLM apps' },
+    btn2: null,
     btnLabel: '↗ GitHub',
-    btnHref: 'https://github.com/Retr0Rat/AI-QA-Tools',
-    image: 'https://placehold.co/800x450/1a0533/a855f7?text=AI+Q%26A+Tool',
+    btnHref: 'https://github.com/Retr0Rat/prompt-injection-scanner.git',
+    image: 'https://placehold.co/800x450/1a0533/a855f7?text=LLM+Scanner',
   },
   {
     num: '03',
-    type: 'Machine Learning · FastAPI',
-    name: 'Fraud Detection API',
-    shortName: 'Fraud API',
-    desc: 'Fraud detection REST API achieving 95.62% F1-score using XGBoost with a full preprocessing pipeline, FastAPI serving layer, and Dockerised deployment for production readiness.',
-    tech: ['Python', 'XGBoost', 'FastAPI', 'scikit-learn', 'Docker', 'pandas'],
+    type: 'Machine Learning · Anomaly Detection',
+    name: 'SIEM Network Anomaly Detector',
+    shortName: 'Anomaly Detector',
+    desc: 'Unsupervised anomaly detection system using Isolation Forest on the CICIDS 2017 dataset, identifying DDoS attacks without any labelled attack data. Achieved Macro F1 of 0.71, deployed as a REST API via FastAPI and Docker.',
+    tech: ['Python', 'Isolation Forest', 'FastAPI', 'scikit-learn', 'Docker', 'pandas'],
     live: false,
     stats: [
-      { num: '95.62%', lbl: 'F1-Score'  },
-      { num: 'XGBoost', lbl: 'Model'    },
-      { num: '2025',   lbl: 'Shipped'   },
-      { num: 'REST',   lbl: 'API'       },
+      { num: '0.71',  lbl: 'Macro F1'  },
+      { num: 'SIEM',  lbl: 'Domain'    },
+      { num: '2026',  lbl: 'Shipped'   },
+      { num: 'REST',  lbl: 'API'       },
     ],
-    info: { label: '🐳 Deployment', val: 'Docker container', sub: 'FastAPI serving with preprocessing pipeline' },
+    info: { label: '🛡️ Dataset', val: 'CICIDS 2017', sub: 'Unsupervised DDoS detection — no labelled data' },
+    btn2: null,
     btnLabel: '↗ GitHub',
-    btnHref: 'https://github.com/Retr0Rat',
-    image: 'https://placehold.co/800x450/1a0533/a855f7?text=Fraud+API',
+    btnHref: 'https://github.com/Retr0Rat/siem-anomaly-detector.git',
+    image: 'https://placehold.co/800x450/1a0533/a855f7?text=Anomaly+Detector',
   },
   {
     num: '04',
@@ -76,28 +79,30 @@ const PROJECTS = [
       { num: 'TDD',   lbl: 'Approach' },
     ],
     info: { label: '🧪 Testing', val: 'Vitest + GitHub Actions', sub: '100% test pass rate' },
+    btn2: null,
     btnLabel: '↗ GitHub',
     btnHref: 'https://github.com/Retr0Rat/expense-splitter',
     image: 'https://placehold.co/800x450/1a0533/a855f7?text=Expense+Splitter',
   },
   {
     num: '05',
-    type: 'Data · Tableau',
-    name: 'NovaRetail Dashboard',
-    shortName: 'NovaRetail',
-    desc: 'Three Tableau dashboards — Executive Overview, Customer & Churn Analysis, and Product & Regional Performance — built on a 2,172-row transaction dataset. Identified a 33% data quality issue and resolved it with calculated fields before surfacing a 26% revenue decline and 50% churn risk growth.',
-    tech: ['Tableau', 'Excel', 'Data Cleaning', 'Calculated Fields'],
+    type: 'Data Analytics · Visualisation',
+    name: 'Tableau & Data Analytics',
+    shortName: 'Data Analytics',
+    desc: 'Hands-on experience transforming raw datasets into actionable insights using Tableau and Python. Work spans data cleaning, feature engineering, statistical analysis, and building interactive dashboards — covering business KPIs, customer behaviour, and regional performance across multiple projects.',
+    tech: ['Tableau', 'Python', 'Pandas', 'Matplotlib', 'Seaborn', 'Excel', 'Statistical Analysis'],
     live: false,
     stats: [
-      { num: '3',      lbl: 'Dashboards' },
-      { num: '2,172',  lbl: 'Rows'       },
-      { num: '26%',    lbl: 'Rev Drop'   },
-      { num: '2026',   lbl: 'Shipped'    },
+      { num: 'Multi', lbl: 'Dashboards' },
+      { num: 'KPI',   lbl: 'Focus'      },
+      { num: 'EDA',   lbl: 'Approach'   },
+      { num: '2026',  lbl: 'Ongoing'    },
     ],
-    info: { label: '📊 Tool', val: 'Tableau Desktop', sub: 'Executive, Churn & Regional views' },
+    info: { label: '📊 Tools', val: 'Tableau + Python (Pandas / Matplotlib)', sub: 'End-to-end: cleaning → analysis → storytelling' },
+    btn2: 'Live Demo →',
     btnLabel: '↗ GitHub',
     btnHref: 'https://github.com/Retr0Rat',
-    image: 'https://placehold.co/800x450/1a0533/a855f7?text=NovaRetail',
+    image: 'https://placehold.co/800x450/1a0533/a855f7?text=Data+Analytics',
   },
   {
     num: '06',
@@ -114,6 +119,7 @@ const PROJECTS = [
       { num: 'FS',   lbl: 'Full Stack'},
     ],
     info: { label: '🛍️ Stack', val: 'MERN + Tailwind', sub: 'Admin dashboard + checkout flow' },
+    btn2: 'Live Demo →',
     btnLabel: '↗ GitHub',
     btnHref: 'https://github.com/Retr0Rat',
     image: 'https://placehold.co/800x450/1a0533/a855f7?text=Mon+Amour',
@@ -350,9 +356,11 @@ export default function Projects({ theme }) {
                 <a href={proj.btnHref} target="_blank" rel="noopener noreferrer" className="proj-btn proj-btn--ghost">
                   {proj.btnLabel}
                 </a>
-                <button onClick={() => { setActive(i); setDrawerOpen(true) }} className="proj-btn proj-btn--filled">
-                  More Info →
-                </button>
+                {proj.btn2 && (
+                  <button onClick={() => { setActive(i); setDrawerOpen(true) }} className="proj-btn proj-btn--filled">
+                    {proj.btn2}
+                  </button>
+                )}
               </div>
             </div>
 
@@ -374,9 +382,11 @@ export default function Projects({ theme }) {
                   <a href={proj.btnHref} target="_blank" rel="noopener noreferrer" className="proj-btn proj-btn--ghost">
                     {proj.btnLabel}
                   </a>
-                  <button onClick={() => { setActive(i); setDrawerOpen(true) }} className="proj-btn proj-btn--filled">
-                    More Info →
-                  </button>
+                  {proj.btn2 && (
+                    <button onClick={() => { setActive(i); setDrawerOpen(true) }} className="proj-btn proj-btn--filled">
+                      {proj.btn2}
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -401,13 +411,15 @@ export default function Projects({ theme }) {
                     >
                       {proj.btnLabel}
                     </CylinderText>
-                    <CylinderText
-                      as="button"
-                      onClick={() => { setActive(i); setDrawerOpen(true) }}
-                      style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 14, color: '#ffffff', letterSpacing: '0.04em' }}
-                    >
-                      More Info →
-                    </CylinderText>
+                    {proj.btn2 && (
+                      <CylinderText
+                        as="button"
+                        onClick={() => { setActive(i); setDrawerOpen(true) }}
+                        style={{ fontFamily: "'Syne',sans-serif", fontWeight: 700, fontSize: 14, color: '#ffffff', letterSpacing: '0.04em' }}
+                      >
+                        {proj.btn2}
+                      </CylinderText>
+                    )}
                   </div>
                 </div>
 
